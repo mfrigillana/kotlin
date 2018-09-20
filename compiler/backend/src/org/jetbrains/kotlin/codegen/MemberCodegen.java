@@ -370,6 +370,9 @@ public abstract class MemberCodegen<T extends KtPureElement/* TODO: & KtDeclarat
         }
         String innerName = innerClass.getName().isSpecial() ? null : innerClass.getName().asString();
         String innerClassInternalName = typeMapper.classInternalName(innerClass);
+        if (innerName == null) {
+            innerName = innerClassInternalName;
+        }
         v.visitInnerClass(innerClassInternalName, outerClassInternalName, innerName, calculateInnerClassAccessFlags(innerClass));
     }
 
